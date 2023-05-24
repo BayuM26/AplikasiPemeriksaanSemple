@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Codedge\Fpdf\Fpdf\Fpdf;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -73,12 +74,9 @@ class OperatorController extends Controller
         ]);
     }
 
+
     public function created(Request $request){
-        $request->validate([
-            'namaCustomer' => 'required',
-            'alamatCustomer' => 'required',
-            'TotalBiaya' => 'required',
-        ]);
+
         Customer::create([
             'user_id' => auth()->user()->id,
             'namaCustomer' => $request->namaCustomer,

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\OperatorController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,10 @@ Route::middleware('web')->group(function(){
     Route::controller(AuthController::class)->group(function(){
         Route::get('/','index')->middleware('guest');
         Route::post('/login/auth','Authentication')->middleware('guest');
+    });
+
+    Route::controller(ExportController::class)->group(function(){
+        Route::get('/','index')->middleware('auth');
     });
 
     Route::controller(OperatorController::class)->group(function(){
